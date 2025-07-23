@@ -125,4 +125,101 @@
     position: absolute;
     top: 20px;
     left: 50%;
-    transform: transla
+    transform: translateX(-50%) rotate(-3deg);
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.85);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 700px) {
+    #audio-player {
+      width: 90vw;
+      max-width: 280px;
+    }
+    .photo-container img {
+      width: 90vw;
+    }
+    .photo-text {
+      font-size: 2rem;
+    }
+    .btn {
+      display: block;
+      width: 90%;
+      margin: 8px auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <audio id="audio-player" controls preload="none">
+    <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
+    Votre navigateur ne supporte pas la lecture audio.
+  </audio>
+
+  <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda" />
+
+  <div id="audio-message">Cliquez pour lancer la musique</div>
+</header>
+
+<main class="container">
+
+  <div class="btn-container">
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn btn-red" title="Modifier mon inscription">✏️ Modifier mon inscription</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn btn-blue" title="Voir les effectifs">👥 Voir les effectifs</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" target="_blank" class="btn btn-red" title="Retour accueil du site">🏠 Retour accueil</a>
+  </div>
+
+  <div class="photo-container">
+    <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
+    <div class="photo-text">Merci pour votre inscription</div>
+  </div>
+
+</main>
+
+<script>
+  const audio = document.getElementById('audio-player');
+  let played = false;
+
+  function playAudioOnce() {
+    if (!played) {
+      audio.play().catch(() => {
+        // ignore erreur si refusé
+      });
+      played = true;
+      document.removeEventListener('click', playAudioOnce);
+    }
+  }
+
+  // Clic global pour lancer la musique
+  document.addEventListener('click', playAudioOnce);
+
+  // Intercepter clics sur boutons pour lancer musique avant redirection
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(event) {
+      if (!played) {
+        event.preventDefault(); // bloque navigation immédiate
+        audio.play().finally(() => {
+          played = true;
+          document.removeEventListener('click', playAudioOnce);
+          // Redirection après petit délai
+          setTimeout(() => {
+            window.open(this.href, this.target || '_self');
+          }, 150);
+        });
+      }
+      // Sinon navigation normale si déjà joué
+    });
+  });
+</script>
+
+</body>
+</html>
