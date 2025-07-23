@@ -15,30 +15,27 @@
     text-align: center;
   }
 
-  /* Conteneur principal pour limiter largeur contenu sauf bannière */
   .container {
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  /* Bannière pleine largeur avec marge latérale minime (~20px), taille réduite à 80% */
   header {
     position: relative;
-    margin: 0 20px 15px 20px; /* réduction marge bas à 15px (avant 30px) */
+    margin: 0 20px 8px 20px; /* réduction marge bas */
     transform: scale(0.8);
     transform-origin: top center;
   }
 
   header img {
-    width: 100%; /* occupe toute la largeur possible */
+    width: 100%;
     max-width: calc(100vw - 40px);
-    height: auto; /* garde les proportions */
+    height: auto;
     display: block;
     margin: 0 auto;
     user-select: none;
   }
 
-  /* Player audio positionné sur la bannière */
   #audio-player {
     position: absolute;
     top: 10px;
@@ -51,7 +48,6 @@
     z-index: 10;
   }
 
-  /* Message blanc en bas de la bannière */
   #audio-message {
     position: absolute;
     bottom: 10px;
@@ -66,11 +62,9 @@
   }
 
   main.container {
-    /* largeur max et centrage pour contenu */
     text-align: center;
   }
 
-  /* Boutons alignés en ligne au-dessus de la photo */
   .btn-container {
     margin-bottom: 20px;
   }
@@ -104,7 +98,6 @@
     background-color: #001933;
   }
 
-  /* Conteneur photo avec texte superposé */
   .photo-container {
     position: relative;
     display: inline-block;
@@ -112,7 +105,7 @@
     margin: 0 auto 30px auto;
   }
   .photo-container img {
-    width: 800px; /* taille photo augmentée */
+    width: 900px; /* photo agrandie */
     max-width: 100%;
     height: auto;
     border-radius: 12px;
@@ -120,7 +113,6 @@
     user-select: none;
   }
 
-  /* Texte "Merci" en haut de la photo, assez grand */
   .photo-text {
     position: absolute;
     top: 20px;
@@ -135,7 +127,6 @@
     white-space: nowrap;
   }
 
-  /* Responsive mobile */
   @media (max-width: 700px) {
     #audio-player {
       width: 90vw;
@@ -191,32 +182,26 @@
 
   function playAudioOnce() {
     if (!played) {
-      audio.play().catch(() => {
-        // ignore erreur si refusé
-      });
+      audio.play().catch(() => {});
       played = true;
       document.removeEventListener('click', playAudioOnce);
     }
   }
 
-  // Clic global pour lancer la musique
   document.addEventListener('click', playAudioOnce);
 
-  // Intercepter clics sur boutons pour lancer musique avant redirection
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', function(event) {
       if (!played) {
-        event.preventDefault(); // bloque navigation immédiate
+        event.preventDefault();
         audio.play().finally(() => {
           played = true;
           document.removeEventListener('click', playAudioOnce);
-          // Redirection après petit délai
           setTimeout(() => {
             window.open(this.href, this.target || '_self');
           }, 150);
         });
       }
-      // Sinon navigation normale si déjà joué
     });
   });
 </script>
