@@ -107,3 +107,99 @@
     position: relative;
     display: inline-block;
     max-width: 100%;
+    margin: 0 auto 30px auto;
+  }
+  .photo-container img {
+    width: 750px; /* agrandi la photo centrale */
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
+    user-select: none;
+  }
+
+  /* Texte "Merci" en haut de la photo, assez grand */
+  .photo-text {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.85);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 700px) {
+    #audio-player {
+      width: 90vw;
+      max-width: 280px;
+    }
+    .photo-container img {
+      width: 90vw;
+    }
+    .photo-text {
+      font-size: 2rem;
+    }
+    .btn {
+      display: block;
+      width: 90%;
+      margin: 8px auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <audio id="audio-player" controls preload="none">
+    <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
+    Votre navigateur ne supporte pas la lecture audio.
+  </audio>
+
+  <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda" />
+
+  <div id="audio-message">Cliquez ci-dessus pour lancer la musique</div>
+</header>
+
+<main class="container">
+
+  <div class="btn-container">
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn btn-red" title="Modifier mon inscription">✏️ Modifier mon inscription</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn btn-blue" title="Voir les effectifs">👥 Voir les effectifs</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn btn-red" title="Retour accueil du site">🏠 Retour accueil</a>
+  </div>
+
+  <div class="photo-container">
+    <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
+    <div class="photo-text">Merci pour votre inscription</div>
+  </div>
+
+</main>
+
+<script>
+  // Ghost click : jouer musique au premier clic n'importe où sur la page
+  const audio = document.getElementById('audio-player');
+  let played = false;
+
+  function playAudioOnce() {
+    if (!played) {
+      audio.play().catch(() => {
+        // play() rejeté si pas d'interaction utilisateur, ici on ignore l'erreur
+      });
+      played = true;
+      // Retirer listener car plus utile après 1er clic
+      document.removeEventListener('click', playAudioOnce);
+    }
+  }
+  document.addEventListener('click', playAudioOnce);
+</script>
+
+</body>
+</html>
