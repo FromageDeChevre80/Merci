@@ -13,26 +13,66 @@
       padding: 20px;
     }
 
-    /* Player audio en haut */
-    #audio-player {
-      margin-bottom: 20px;
+    header {
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(183, 28, 28, 0.4);
+      height: 180px;
     }
 
+    /* Bannière image */
     header img {
       width: 100%;
-      height: auto; /* Pas de zoom, image complète */
+      height: 100%;
+      object-fit: contain;
       display: block;
-      margin-bottom: 10px;
+      user-select: none;
+      pointer-events: none;
     }
 
-    /* Message sous la bannière */
-    #message-musique {
-      color: #B71C1C;
+    /* Conteneur player audio en overlay sur la bannière */
+    #audio-container {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 5px 10px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      user-select: none;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #audio-player {
+      width: 100%;
+      outline: none;
+    }
+
+    /* Message en bas de la bannière */
+    #audio-message {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: white;
       font-weight: bold;
-      margin-bottom: 30px;
-      font-size: 1.2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      font-size: 0.9rem;
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
     }
 
+    /* Boutons */
     .btn {
       background-color: #B71C1C;
       color: white;
@@ -67,12 +107,11 @@
       background-color: #002244;
     }
 
-    /* Conteneur boutons pour qu'ils restent sur une ligne (si espace) */
     .btn-container {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
-    /* Conteneur photo avec message */
+    /* Photo centrale */
     .photo-container {
       position: relative;
       max-width: 60%;
@@ -87,10 +126,10 @@
       display: block;
     }
 
-    /* Texte sur la photo, centré horizontalement et un peu en haut */
+    /* Texte sur la photo en haut */
     .photo-message {
       position: absolute;
-      top: 20%;
+      top: 5%;
       left: 50%;
       transform: translateX(-50%) rotate(-8deg);
       color: white;
@@ -104,36 +143,31 @@
       pointer-events: none;
     }
 
-    footer {
-      margin-top: 40px;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border-top: 1px solid #ddd;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 50px;
-      z-index: 1000;
-    }
-    footer audio {
-      height: 30px;
-    }
-
     /* Responsive */
     @media (max-width: 600px) {
-      header img {
-        height: auto;
+      header {
+        height: 120px;
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      #audio-container {
+        max-width: 95%;
+        padding: 5px 7px;
+      }
+      #audio-player {
+        width: 100%;
+        margin-bottom: 3px;
+      }
+      #audio-message {
+        font-size: 0.8rem;
       }
       .photo-container {
         max-width: 90%;
       }
       .photo-message {
         font-size: 1.6rem;
-        top: 15%;
+        top: 5%;
         transform: translateX(-50%) rotate(-6deg);
       }
       .btn, .btn-effectifs {
@@ -141,30 +175,23 @@
         font-size: 0.9rem;
         margin: 5px 7px;
       }
-      footer {
-        height: 40px;
-      }
-      footer audio {
-        height: 25px;
-      }
     }
   </style>
 </head>
 <body>
 
-<!-- Player audio en haut -->
-<div id="audio-player">
-  <audio id="audio" controls>
-    <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
-    Votre navigateur ne supporte pas la lecture audio.
-  </audio>
-</div>
-
 <header>
   <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda"/>
-</header>
+  
+  <div id="audio-container">
+    <audio id="audio-player" controls preload="none">
+      <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
+      Votre navigateur ne supporte pas la lecture audio.
+    </audio>
+  </div>
 
-<div id="message-musique">Cliquez ci-dessus pour lancer la musique</div>
+  <div id="audio-message">Cliquez ci-dessus pour lancer la musique</div>
+</header>
 
 <main>
   <div class="btn-container">
