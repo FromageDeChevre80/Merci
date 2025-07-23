@@ -18,10 +18,11 @@
     /* Bannière logo */
     img.banner {
       width: 100%;
-      max-height: 180px;
-      object-fit: cover;
+      max-height: 120px;
+      object-fit: contain;
       display: block;
       margin: 0 auto 30px auto;
+      background: white;
     }
     /* Photo centrée */
     img.photo-banda {
@@ -41,7 +42,10 @@
       font-size: 1rem;
       cursor: pointer;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       transition: background-color 0.3s ease;
       color: white;
     }
@@ -61,6 +65,41 @@
       background-color: #002244;
       color: #ffd700;
     }
+
+    /* Conteneur boutons */
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      img.banner {
+        max-height: 80px;
+        margin-bottom: 20px;
+      }
+      img.photo-banda {
+        max-width: 100%;
+        margin-top: 20px;
+      }
+      .btn {
+        flex: 1 1 100%; /* boutons en full width */
+        margin: 8px 0;
+        font-size: 1.1rem;
+        padding: 14px;
+      }
+      .btn-container {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -74,28 +113,29 @@
 </header>
 
 <main>
-  <!-- Boutons au-dessus de la photo -->
-  <div>
+  <div class="btn-container">
     <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" 
-       class="btn red">
-      Modifier mon inscription
+       class="btn red" 
+       aria-label="Modifier mon inscription">
+      ✏️ Modifier mon inscription
     </a>
     <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" 
        target="_blank" 
-       class="btn blue">
-      Voir les effectifs
+       class="btn blue"
+       aria-label="Voir les effectifs">
+      👥 Voir les effectifs
     </a>
     <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" 
-       class="btn red">
-      Retour accueil du site
+       class="btn red"
+       aria-label="Retour accueil du site">
+      🏠 Retour accueil du site
     </a>
   </div>
 
-  <!-- Photo de la banda centrée -->
   <div>
     <img 
       class="photo-banda" 
-      src="https://github.com/FromageDeChevre80/Merci/blob/main/photo-banda.png?raw=true" 
+      src="https://github.com/FromageDeChevre80/Merci/blob/main/1tM31PiqJyzaPt5sa3N_DturktchmIYu9.png?raw=true" 
       alt="Photo Banda" 
     />
   </div>
@@ -107,4 +147,3 @@
 
 </body>
 </html>
-
