@@ -12,17 +12,28 @@
       margin: 0;
       padding: 20px;
     }
+
     header {
+      background-image: url('https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png');
+      background-size: cover;
+      background-position: center;
+      height: 200px;
       margin-bottom: 30px;
+      position: relative;
     }
-    /* Bannière logo style */
-    img.logo {
-      width: 100%;
-      max-height: 150px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto 20px auto;
+    /* Texte logo dans la bannière (optionnel) */
+    header h1 {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: bold;
+      font-family: 'Arial Black', Arial, sans-serif;
     }
+
     /* Photo centrée */
     img.photo-banda {
       max-width: 90%;
@@ -32,6 +43,7 @@
       margin: 30px auto;
       display: block;
     }
+
     /* Boutons */
     .btn {
       background-color: #B71C1C;
@@ -50,6 +62,7 @@
     .btn:hover {
       background-color: #7B1212;
     }
+
     /* Bouton voir les effectifs spécifique */
     .btn-effectifs {
       background-color: #003366;
@@ -66,6 +79,7 @@
     .btn-effectifs:hover {
       background-color: #002244;
     }
+
     /* Footer audio player */
     footer {
       margin-top: 40px;
@@ -85,10 +99,16 @@
     footer audio {
       height: 30px;
     }
+
     /* Responsive */
     @media (max-width: 600px) {
-      img.logo {
-        max-height: 100px;
+      header {
+        height: 120px;
+      }
+      header h1 {
+        font-size: 1.5rem;
+        bottom: 5px;
+        left: 10px;
       }
       .btn, .btn-effectifs {
         padding: 10px 15px;
@@ -107,9 +127,8 @@
 <body>
 
 <header>
-  <img class="logo" 
-       src="https://github.com/FromageDeChevre80/Merci/raw/main/52251062.png" 
-       alt="Logo Banda des Bords de Marne" />
+  <!-- Tu peux activer ce titre si tu veux un texte sur la bannière -->
+  <!-- <h1>Banda des Bords de Marne</h1> -->
 </header>
 
 <main>
@@ -119,7 +138,7 @@
   </a>
 
   <img class="photo-banda" 
-       src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.jpg" 
+       src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" 
        alt="Photo Banda" />
   
   <div>
@@ -128,11 +147,23 @@
 </main>
 
 <footer>
-  <audio controls>
+  <audio controls autoplay>
     <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
     Votre navigateur ne supporte pas la lecture audio.
   </audio>
 </footer>
+
+<script>
+  // Essayer de forcer la lecture auto (mais certains navigateurs l'empêchent sans interaction)
+  window.addEventListener('load', () => {
+    const audio = document.querySelector('audio');
+    if(audio){
+      audio.play().catch(() => {
+        console.log('Lecture automatique empêchée par le navigateur.');
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
