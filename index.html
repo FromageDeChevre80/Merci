@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Banda des Bords de Marne</title>
 <style>
+  /* Reset & body */
   body {
     font-family: Arial, sans-serif;
     background: #fff;
@@ -13,22 +14,29 @@
     padding: 20px 10px;
     text-align: center;
   }
-  header {
-    background-color: #B71C1C;
+
+  /* Conteneur principal pour limiter largeur contenu sauf bannière */
+  .container {
     max-width: 1200px;
-    width: 90%;
-    margin: 20px auto 10px auto;
-    padding: 10px 0 40px 0;
-    border-radius: 12px;
-    position: relative;
+    margin: 0 auto;
   }
+
+  /* Bannière pleine largeur avec marge latérale minime (~20px) */
+  header {
+    position: relative;
+    margin: 0 20px 30px 20px; /* 20px marge de chaque côté */
+  }
+
   header img {
+    width: auto;
+    max-width: calc(100vw - 40px); /* écran moins marge */
+    height: auto;
     display: block;
     margin: 0 auto;
-    max-width: 100%;
-    height: auto;
     user-select: none;
   }
+
+  /* Player audio positionné sur la bannière */
   #audio-player {
     position: absolute;
     top: 10px;
@@ -38,7 +46,10 @@
     opacity: 0.7;
     border-radius: 10px;
     background: rgba(255 255 255 / 0.5);
+    z-index: 10;
   }
+
+  /* Message blanc en bas de la bannière */
   #audio-message {
     position: absolute;
     bottom: 10px;
@@ -46,50 +57,35 @@
     text-align: center;
     color: white;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 1rem;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
     user-select: none;
+    z-index: 10;
   }
-  main {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
+
+  main.container {
+    /* largeur max et centrage pour contenu */
     text-align: center;
   }
-  .photo-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 30px;
+
+  /* Boutons alignés en ligne au-dessus de la photo */
+  .btn-container {
+    margin-bottom: 20px;
   }
-  .photo-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
-  }
-  .photo-text {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-3deg);
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-    pointer-events: none;
-    user-select: none;
-  }
+
   .btn {
     display: inline-block;
     padding: 12px 25px;
-    margin: 0 10px 15px;
+    margin: 0 12px 10px 12px;
     border-radius: 8px;
     font-weight: bold;
     font-size: 1rem;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    user-select: none;
   }
+
   .btn-red {
     background-color: #B71C1C;
     color: white;
@@ -97,6 +93,7 @@
   .btn-red:hover {
     background-color: #7B1212;
   }
+
   .btn-blue {
     background-color: #003366;
     color: #ffd700;
@@ -104,22 +101,54 @@
   .btn-blue:hover {
     background-color: #001933;
   }
-  @media (max-width: 600px) {
-    header, main {
-      width: 95%;
-    }
+
+  /* Conteneur photo avec texte superposé */
+  .photo-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 auto 30px auto;
+  }
+  .photo-container img {
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
+    user-select: none;
+  }
+
+  /* Texte "Merci" en haut de la photo, assez grand */
+  .photo-text {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.85);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 700px) {
     #audio-player {
-      width: 90%;
+      width: 90vw;
       max-width: 280px;
+    }
+    .photo-container img {
+      width: 90vw;
+    }
+    .photo-text {
+      font-size: 2rem;
     }
     .btn {
       display: block;
-      margin: 10px auto;
       width: 90%;
-      max-width: 300px;
-    }
-    .photo-text {
-      font-size: 1.5rem;
+      margin: 8px auto;
     }
   }
 </style>
@@ -137,18 +166,40 @@
   <div id="audio-message">Cliquez ci-dessus pour lancer la musique</div>
 </header>
 
-<main>
+<main class="container">
+
+  <div class="btn-container">
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn btn-red" title="Modifier mon inscription">✏️ Modifier mon inscription</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn btn-blue" title="Voir les effectifs">👥 Voir les effectifs</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn btn-red" title="Retour accueil du site">🏠 Retour accueil</a>
+  </div>
+
   <div class="photo-container">
     <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
     <div class="photo-text">Merci pour votre inscription</div>
   </div>
 
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn btn-red">Modifier mon inscription</a>
-
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn btn-blue">👥 Voir les effectifs</a>
-
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn btn-red">Retour accueil du site</a>
 </main>
+
+<script>
+  // Ghost click : jouer musique au premier clic n'importe où sur la page
+  const audio = document.getElementById('audio-player');
+  let played = false;
+
+  function playAudioOnce() {
+    if (!played) {
+      audio.play().catch(() => {
+        // play() rejeté si pas d'interaction utilisateur, ici on ignore l'erreur
+      });
+      played = true;
+      // Retirer listener car plus utile après 1er clic
+      document.removeEventListener('click', playAudioOnce);
+    }
+  }
+  document.addEventListener('click', playAudioOnce);
+</script>
 
 </body>
 </html>
