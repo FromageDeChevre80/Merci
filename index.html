@@ -1,239 +1,154 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Banda des Bords de Marne</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #B71C1C;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Banda des Bords de Marne</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #B71C1C;
+    margin: 0;
+    padding: 20px 10px;
+    text-align: center;
+  }
+  header {
+    background-color: #B71C1C;
+    max-width: 1200px;
+    width: 90%;
+    margin: 20px auto 10px auto;
+    padding: 10px 0 40px 0;
+    border-radius: 12px;
+    position: relative;
+  }
+  header img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    user-select: none;
+  }
+  #audio-player {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    opacity: 0.7;
+    border-radius: 10px;
+    background: rgba(255 255 255 / 0.5);
+  }
+  #audio-message {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    user-select: none;
+  }
+  main {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .photo-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+  .photo-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
+  }
+  .photo-text {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    pointer-events: none;
+    user-select: none;
+  }
+  .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 0 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn-red {
+    background-color: #B71C1C;
+    color: white;
+  }
+  .btn-red:hover {
+    background-color: #7B1212;
+  }
+  .btn-blue {
+    background-color: #003366;
+    color: #ffd700;
+  }
+  .btn-blue:hover {
+    background-color: #001933;
+  }
+  @media (max-width: 600px) {
+    header, main {
+      width: 95%;
     }
-
-    header {
-      position: relative;
-      margin: 0 auto 30px auto;
-      max-width: calc(100% - 40px); /* 20px (2cm approx) marge de chaque côté */
-      height: 280px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(183, 28, 28, 0.4);
-    }
-
-    header img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    #audio-container {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 280px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 12px;
-      padding: 3px 8px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.2);
-      user-select: none;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
-      font-size: 0.85rem;
-    }
-
-    #audio-container:hover {
-      opacity: 1;
-    }
-
     #audio-player {
-      width: 100%;
-      outline: none;
-      height: 25px;
+      width: 90%;
+      max-width: 280px;
     }
-
-    #audio-message {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-      font-size: 0.9rem;
-      user-select: none;
-      pointer-events: none;
-      z-index: 10;
-    }
-
     .btn {
-      background-color: #B71C1C;
-      color: white;
-      padding: 12px 25px;
-      margin: 10px 15px 10px 15px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #7B1212;
-    }
-
-    .btn-effectifs {
-      background-color: #003366;
-      color: #ffd700;
-      padding: 12px 25px;
-      margin: 10px 15px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-    }
-    .btn-effectifs:hover {
-      background-color: #002244;
-    }
-
-    .btn-container {
-      margin-bottom: 30px;
-    }
-
-    .photo-container {
-      position: relative;
-      max-width: 60%;
-      margin: 0 auto 50px auto;
-    }
-
-    img.photo-banda {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
       display: block;
+      margin: 10px auto;
+      width: 90%;
+      max-width: 300px;
     }
-
-    .photo-message {
-      position: absolute;
-      top: 5%;
-      left: 50%;
-      transform: translateX(-50%) rotate(-8deg);
-      color: white;
-      font-size: 2.8rem;
-      font-weight: bold;
-      text-shadow:
-         2px 2px 4px rgba(0,0,0,0.7),
-         -2px -2px 4px rgba(0,0,0,0.7);
-      white-space: nowrap;
-      user-select: none;
-      pointer-events: none;
+    .photo-text {
+      font-size: 1.5rem;
     }
-
-    @media (max-width: 600px) {
-      header {
-        height: 180px;
-        max-width: calc(100% - 20px);
-        border-radius: 0;
-        box-shadow: none;
-      }
-      #audio-container {
-        width: 180px;
-        padding: 3px 5px;
-        font-size: 0.75rem;
-        height: 22px;
-      }
-      #audio-player {
-        height: 20px;
-      }
-      #audio-message {
-        font-size: 0.8rem;
-      }
-      .photo-container {
-        max-width: 90%;
-      }
-      .photo-message {
-        font-size: 1.6rem;
-        top: 5%;
-        transform: translateX(-50%) rotate(-6deg);
-      }
-      .btn, .btn-effectifs {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-        margin: 5px 7px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
 <header>
-  <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda"/>
-  
-  <div id="audio-container">
-    <audio id="audio-player" controls preload="none">
-      <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
-      Votre navigateur ne supporte pas la lecture audio.
-    </audio>
-  </div>
+  <audio id="audio-player" controls preload="none">
+    <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
+    Votre navigateur ne supporte pas la lecture audio.
+  </audio>
+
+  <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda" />
 
   <div id="audio-message">Cliquez ci-dessus pour lancer la musique</div>
 </header>
 
 <main>
-  <div class="btn-container">
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn">Modifier mon inscription</a>
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn-effectifs">
-      👥 Voir les effectifs
-    </a>
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn">Retour accueil du site</a>
-  </div>
-
   <div class="photo-container">
-    <img class="photo-banda" 
-         src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" 
-         alt="Photo Banda" />
-    <div class="photo-message">Merci pour votre inscription</div>
+    <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
+    <div class="photo-text">Merci pour votre inscription</div>
   </div>
+
+  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn btn-red">Modifier mon inscription</a>
+
+  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn btn-blue">👥 Voir les effectifs</a>
+
+  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn btn-red">Retour accueil du site</a>
 </main>
-
-<script>
-  const audio = document.getElementById('audio-player');
-  let musicStarted = false;
-
-  function startMusic() {
-    if (!musicStarted) {
-      audio.play().catch(() => {
-        // Peut échouer si autoplay bloqué, donc rien
-      });
-      musicStarted = true;
-      // On peut changer le message pour éviter confusion
-      document.getElementById('audio-message').textContent = 'Musique lancée';
-    }
-  }
-
-  // Ghost click : 1er clic sur la page (boutons ou photo inclus) lance la musique, puis propagation normale
-  document.body.addEventListener('click', (event) => {
-    if (!musicStarted) {
-      startMusic();
-      // On ne stoppe pas l'événement, le clic sera pris en compte aussi
-    }
-  }, { once: true });
-</script>
 
 </body>
 </html>
