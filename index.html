@@ -30,7 +30,8 @@
   header img {
     width: auto;
     max-width: calc(100vw - 40px); /* écran moins marge */
-    height: 130px; /* hauteur un peu réduite (avant: auto) */
+    max-height: 130px; /* limite hauteur sans forcer */
+    height: auto;
     display: block;
     margin: 0 auto;
     user-select: none;
@@ -110,7 +111,7 @@
     margin: 0 auto 30px auto;
   }
   .photo-container img {
-    width: 650px; /* un peu plus grande (avant 600px) */
+    width: 650px; /* un peu plus grande */
     max-width: 100%;
     height: auto;
     border-radius: 12px;
