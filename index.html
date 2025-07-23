@@ -13,43 +13,31 @@
       padding: 20px;
     }
 
-    header {
-      background-image: url('https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png');
-      background-size: cover;
-      background-position: center;
-      height: 200px;
-      margin-bottom: 30px;
-      position: relative;
-    }
-    /* Texte logo dans la bannière (optionnel) */
-    header h1 {
-      position: absolute;
-      bottom: 10px;
-      left: 20px;
-      color: white;
-      text-shadow: 2px 2px 5px black;
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: bold;
-      font-family: 'Arial Black', Arial, sans-serif;
+    /* Player audio en haut */
+    #audio-player {
+      margin-bottom: 20px;
     }
 
-    /* Photo centrée */
-    img.photo-banda {
-      max-width: 90%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
-      margin: 30px auto;
+    header img {
+      width: 100%;
+      height: auto; /* Pas de zoom, image complète */
       display: block;
+      margin-bottom: 10px;
     }
 
-    /* Boutons */
+    /* Message sous la bannière */
+    #message-musique {
+      color: #B71C1C;
+      font-weight: bold;
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+    }
+
     .btn {
       background-color: #B71C1C;
       color: white;
       padding: 12px 25px;
-      margin: 10px 15px;
+      margin: 10px 15px 10px 15px;
       border: none;
       border-radius: 8px;
       font-weight: bold;
@@ -63,7 +51,6 @@
       background-color: #7B1212;
     }
 
-    /* Bouton voir les effectifs spécifique */
     .btn-effectifs {
       background-color: #003366;
       color: #ffd700;
@@ -80,7 +67,43 @@
       background-color: #002244;
     }
 
-    /* Footer audio player */
+    /* Conteneur boutons pour qu'ils restent sur une ligne (si espace) */
+    .btn-container {
+      margin-bottom: 20px;
+    }
+
+    /* Conteneur photo avec message */
+    .photo-container {
+      position: relative;
+      max-width: 60%;
+      margin: 0 auto 50px auto;
+    }
+
+    img.photo-banda {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
+      display: block;
+    }
+
+    /* Texte sur la photo, centré horizontalement et un peu en haut */
+    .photo-message {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-8deg);
+      color: white;
+      font-size: 2.8rem;
+      font-weight: bold;
+      text-shadow:
+         2px 2px 4px rgba(0,0,0,0.7),
+         -2px -2px 4px rgba(0,0,0,0.7);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+    }
+
     footer {
       margin-top: 40px;
       padding: 10px;
@@ -102,13 +125,16 @@
 
     /* Responsive */
     @media (max-width: 600px) {
-      header {
-        height: 120px;
+      header img {
+        height: auto;
       }
-      header h1 {
-        font-size: 1.5rem;
-        bottom: 5px;
-        left: 10px;
+      .photo-container {
+        max-width: 90%;
+      }
+      .photo-message {
+        font-size: 1.6rem;
+        top: 15%;
+        transform: translateX(-50%) rotate(-6deg);
       }
       .btn, .btn-effectifs {
         padding: 10px 15px;
@@ -126,44 +152,36 @@
 </head>
 <body>
 
-<header>
-  <!-- Tu peux activer ce titre si tu veux un texte sur la bannière -->
-  <!-- <h1>Banda des Bords de Marne</h1> -->
-</header>
-
-<main>
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn">Modifier mon inscription</a>
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn-effectifs">
-    👥 Voir les effectifs
-  </a>
-
-  <img class="photo-banda" 
-       src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" 
-       alt="Photo Banda" />
-  
-  <div>
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn">Retour accueil du site</a>
-  </div>
-</main>
-
-<footer>
-  <audio controls autoplay>
+<!-- Player audio en haut -->
+<div id="audio-player">
+  <audio id="audio" controls>
     <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
     Votre navigateur ne supporte pas la lecture audio.
   </audio>
-</footer>
+</div>
 
-<script>
-  // Essayer de forcer la lecture auto (mais certains navigateurs l'empêchent sans interaction)
-  window.addEventListener('load', () => {
-    const audio = document.querySelector('audio');
-    if(audio){
-      audio.play().catch(() => {
-        console.log('Lecture automatique empêchée par le navigateur.');
-      });
-    }
-  });
-</script>
+<header>
+  <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda"/>
+</header>
+
+<div id="message-musique">Cliquez ci-dessus pour lancer la musique</div>
+
+<main>
+  <div class="btn-container">
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn">Modifier mon inscription</a>
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn-effectifs">
+      👥 Voir les effectifs
+    </a>
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn">Retour accueil du site</a>
+  </div>
+
+  <div class="photo-container">
+    <img class="photo-banda" 
+         src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" 
+         alt="Photo Banda" />
+    <div class="photo-message">Merci pour votre inscription</div>
+  </div>
+</main>
 
 </body>
 </html>
