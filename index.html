@@ -1,44 +1,207 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Test Banda</title>
-  <style>
-    body { background: #fff; color: #B71C1C; text-align:center; font-family: Arial, sans-serif; }
-    .banner-wrapper { max-width: 916px; margin: 20px auto; position: relative; }
-    .banner { width: 100%; height: 130px; object-fit: contain; }
-    #audioPlayer { position: absolute; top: 5px; left: 10px; width: 180px; opacity: 0.6; }
-    #clickMessage { position: absolute; bottom: 8px; width: 100%; color: white; font-weight: bold; text-shadow: 1px 1px 4px #000; }
-    .photo-container { max-width: 80%; margin: 20px auto; position: relative; }
-    .photo-banda { width: 100%; border-radius: 12px; box-shadow: 0 0 10px rgba(183, 28, 28, 0.5); }
-    .thank-you { position: absolute; top: 10px; width: 100%; text-align: center; font-size: 28px; font-weight: bold; color: white; text-shadow: 2px 2px 6px #000; pointer-events: none; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Banda des Bords de Marne</title>
+<style>
+  /* Reset & body */
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #B71C1C;
+    margin: 0;
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  /* Conteneur principal pour limiter largeur contenu sauf bannière */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Bannière pleine largeur avec marge latérale minime (~20px) */
+  header {
+    position: relative;
+    margin: 0 20px 30px 20px;
+  }
+
+  header img {
+    width: 100%;
+    max-width: calc(100vw - 40px);
+    height: 150px; /* hauteur réduite */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    user-select: none;
+  }
+
+  /* Player audio positionné sur la bannière */
+  #audio-player {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    opacity: 0.7;
+    border-radius: 10px;
+    background: rgba(255 255 255 / 0.5);
+    z-index: 10;
+  }
+
+  /* Message blanc en bas de la bannière */
+  #audio-message {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    user-select: none;
+    z-index: 10;
+  }
+
+  main.container {
+    text-align: center;
+  }
+
+  /* Boutons alignés en ligne au-dessus de la photo */
+  .btn-container {
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 0 12px 10px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  .btn-red {
+    background-color: #B71C1C;
+    color: white;
+  }
+  .btn-red:hover {
+    background-color: #7B1212;
+  }
+
+  .btn-blue {
+    background-color: #003366;
+    color: #ffd700;
+  }
+  .btn-blue:hover {
+    background-color: #001933;
+  }
+
+  /* Conteneur photo avec texte superposé */
+  .photo-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 auto 30px auto;
+  }
+  .photo-container img {
+    width: 650px;  /* légèrement plus grande */
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
+    user-select: none;
+  }
+
+  /* Texte "Merci" en haut-centre de la photo, un peu plus bas, arrondi */
+  .photo-text {
+    position: absolute;
+    top: 40px;  /* un peu plus bas */
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    background: rgba(183, 28, 28, 0.75);
+    padding: 10px 30px;
+    border-radius: 30px;
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.85);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 700px) {
+    #audio-player {
+      width: 90vw;
+      max-width: 280px;
+    }
+    .photo-container img {
+      width: 90vw;
+    }
+    .photo-text {
+      font-size: 2rem;
+      top: 30px;
+      padding: 6px 20px;
+    }
+    .btn {
+      display: block;
+      width: 90%;
+      margin: 8px auto;
+    }
+  }
+</style>
 </head>
 <body>
 
-  <div class="banner-wrapper">
-    <audio id="audioPlayer" controls preload="none" src="https://github.com/FromageDeChevre80/Merci/blob/main/VID-20250719-WA0005.wav?raw=true"></audio>
-    <img class="banner" src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda" />
-    <div id="clickMessage">Cliquez ci-dessus pour lancer la musique</div>
+<header>
+  <audio id="audio-player" controls preload="none">
+    <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
+    Votre navigateur ne supporte pas la lecture audio.
+  </audio>
+
+  <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda" />
+
+  <div id="audio-message">Cliquez ci-dessus pour lancer la musique</div>
+</header>
+
+<main class="container">
+
+  <div class="btn-container">
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn btn-red" title="Modifier mon inscription">✏️ Modifier mon inscription</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn btn-blue" title="Voir les effectifs">👥 Voir les effectifs</a>
+
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn btn-red" title="Retour accueil du site">🏠 Retour accueil</a>
   </div>
 
   <div class="photo-container">
-    <img class="photo-banda" src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
-    <div class="thank-you">Merci pour votre inscription</div>
+    <img src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
+    <div class="photo-text">Merci pour votre inscription</div>
   </div>
 
-  <script>
-    const audio = document.getElementById('audioPlayer');
-    let started = false;
-    function startAudio() {
-      if (!started) {
-        audio.play().catch(() => {});
-        started = true;
-        document.removeEventListener('click', startAudio);
-      }
+</main>
+
+<script>
+  // Ghost click : jouer musique au premier clic n'importe où sur la page
+  const audio = document.getElementById('audio-player');
+  let played = false;
+
+  function playAudioOnce() {
+    if (!played) {
+      audio.play().catch(() => {});
+      played = true;
+      document.removeEventListener('click', playAudioOnce);
     }
-    document.addEventListener('click', startAudio);
-  </script>
+  }
+  document.addEventListener('click', playAudioOnce);
+</script>
 
 </body>
 </html>
