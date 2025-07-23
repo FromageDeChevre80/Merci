@@ -15,19 +15,24 @@
     header {
       margin-bottom: 30px;
     }
-    img.logo {
-      max-width: 180px;
-      margin-bottom: 15px;
+    /* Bannière logo */
+    img.banner {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 30px auto;
     }
+    /* Photo centrée */
     img.photo-banda {
-      max-width: 100%;
+      max-width: 90%;
+      height: auto;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
-      margin-bottom: 30px;
+      margin-top: 30px;
     }
+    /* Boutons communs */
     .btn {
-      background-color: #B71C1C;
-      color: white;
       padding: 12px 25px;
       margin: 10px 15px;
       border: none;
@@ -38,35 +43,61 @@
       text-decoration: none;
       display: inline-block;
       transition: background-color 0.3s ease;
+      color: white;
     }
-    .btn:hover {
+    /* Bouton rouge */
+    .btn.red {
+      background-color: #B71C1C;
+    }
+    .btn.red:hover {
       background-color: #7B1212;
     }
-    footer {
-      margin-top: 40px;
+    /* Bouton bleu / texte jaune (voir effectifs) */
+    .btn.blue {
+      background-color: #003366;
+      color: #ffd700;
+    }
+    .btn.blue:hover {
+      background-color: #002244;
+      color: #ffd700;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <img class="logo" 
-       src="https://drive.google.com/uc?export=view&id=1tSUhY-FyFUAbvUfOSr1Tn8FMMfBdXdE-" 
-       alt="Logo Banda des Bords de Marne" />
+  <img 
+    class="banner" 
+    src="https://github.com/FromageDeChevre80/Merci/blob/main/52251062.png?raw=true" 
+    alt="Logo Banda des Bords de Marne" 
+  />
 </header>
 
 <main>
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn" target="_blank">Modifier mon inscription</a>
-  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" class="btn" target="_blank">Voir les effectifs</a>
-
+  <!-- Boutons au-dessus de la photo -->
   <div>
-    <img class="photo-banda" 
-         src="https://github.com/FromageDeChevre80/Merci/blob/main/basse-def_Muguet_36.jpg?raw=true" 
-         alt="Photo Banda" />
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" 
+       class="btn red">
+      Modifier mon inscription
+    </a>
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" 
+       target="_blank" 
+       class="btn blue">
+      Voir les effectifs
+    </a>
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" 
+       class="btn red">
+      Retour accueil du site
+    </a>
   </div>
 
+  <!-- Photo de la banda centrée -->
   <div>
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn" target="_blank">Retour accueil du site</a>
+    <img 
+      class="photo-banda" 
+      src="https://github.com/FromageDeChevre80/Merci/blob/main/photo-banda.png?raw=true" 
+      alt="Photo Banda" 
+    />
   </div>
 </main>
 
@@ -77,4 +108,3 @@
 </body>
 </html>
 
-</html>
