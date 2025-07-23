@@ -14,16 +14,15 @@
     }
 
     header {
-      max-width: 900px;
-      margin: 0 auto 30px auto;
       position: relative;
+      margin: 0 auto 30px auto;
+      max-width: calc(100% - 40px); /* 20px (2cm approx) marge de chaque côté */
+      height: 280px;
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 0 15px rgba(183, 28, 28, 0.4);
-      height: 280px; /* Agrandi */
     }
 
-    /* Bannière image */
     header img {
       width: 100%;
       height: 100%;
@@ -33,31 +32,36 @@
       pointer-events: none;
     }
 
-    /* Conteneur player audio en overlay sur la bannière */
     #audio-container {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.8);
+      width: 280px;
+      background: rgba(255, 255, 255, 0.5);
       border-radius: 12px;
-      padding: 5px 10px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      padding: 3px 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
       user-select: none;
       z-index: 10;
       display: flex;
       justify-content: center;
       align-items: center;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      font-size: 0.85rem;
+    }
+
+    #audio-container:hover {
+      opacity: 1;
     }
 
     #audio-player {
       width: 100%;
       outline: none;
+      height: 25px;
     }
 
-    /* Message en bas de la bannière */
     #audio-message {
       position: absolute;
       bottom: 10px;
@@ -72,7 +76,6 @@
       z-index: 10;
     }
 
-    /* Boutons */
     .btn {
       background-color: #B71C1C;
       color: white;
@@ -111,7 +114,6 @@
       margin-bottom: 30px;
     }
 
-    /* Photo centrale */
     .photo-container {
       position: relative;
       max-width: 60%;
@@ -126,7 +128,6 @@
       display: block;
     }
 
-    /* Texte sur la photo en haut */
     .photo-message {
       position: absolute;
       top: 5%;
@@ -143,21 +144,21 @@
       pointer-events: none;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       header {
-        height: 180px; /* plus petit sur mobile */
-        max-width: 100%;
+        height: 180px;
+        max-width: calc(100% - 20px);
         border-radius: 0;
         box-shadow: none;
       }
       #audio-container {
-        max-width: 95%;
-        padding: 5px 7px;
+        width: 180px;
+        padding: 3px 5px;
+        font-size: 0.75rem;
+        height: 22px;
       }
       #audio-player {
-        width: 100%;
-        margin-bottom: 3px;
+        height: 20px;
       }
       #audio-message {
         font-size: 0.8rem;
@@ -209,6 +210,30 @@
     <div class="photo-message">Merci pour votre inscription</div>
   </div>
 </main>
+
+<script>
+  const audio = document.getElementById('audio-player');
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted) {
+      audio.play().catch(() => {
+        // Peut échouer si autoplay bloqué, donc rien
+      });
+      musicStarted = true;
+      // On peut changer le message pour éviter confusion
+      document.getElementById('audio-message').textContent = 'Musique lancée';
+    }
+  }
+
+  // Ghost click : 1er clic sur la page (boutons ou photo inclus) lance la musique, puis propagation normale
+  document.body.addEventListener('click', (event) => {
+    if (!musicStarted) {
+      startMusic();
+      // On ne stoppe pas l'événement, le clic sera pris en compte aussi
+    }
+  }, { once: true });
+</script>
 
 </body>
 </html>
