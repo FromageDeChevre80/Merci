@@ -15,14 +15,13 @@
     header {
       margin-bottom: 30px;
     }
-    /* Bannière logo */
-    img.banner {
+    /* Bannière logo style */
+    img.logo {
       width: 100%;
-      max-height: 120px;
+      max-height: 150px;
       object-fit: contain;
       display: block;
-      margin: 0 auto 30px auto;
-      background: white;
+      margin: 0 auto 20px auto;
     }
     /* Photo centrée */
     img.photo-banda {
@@ -30,10 +29,13 @@
       height: auto;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(183, 28, 28, 0.5);
-      margin-top: 30px;
+      margin: 30px auto;
+      display: block;
     }
-    /* Boutons communs */
+    /* Boutons */
     .btn {
+      background-color: #B71C1C;
+      color: white;
       padding: 12px 25px;
       margin: 10px 15px;
       border: none;
@@ -42,62 +44,62 @@
       font-size: 1rem;
       cursor: pointer;
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      display: inline-block;
       transition: background-color 0.3s ease;
-      color: white;
     }
-    /* Bouton rouge */
-    .btn.red {
-      background-color: #B71C1C;
-    }
-    .btn.red:hover {
+    .btn:hover {
       background-color: #7B1212;
     }
-    /* Bouton bleu / texte jaune (voir effectifs) */
-    .btn.blue {
+    /* Bouton voir les effectifs spécifique */
+    .btn-effectifs {
       background-color: #003366;
       color: #ffd700;
+      padding: 12px 25px;
+      margin: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
     }
-    .btn.blue:hover {
+    .btn-effectifs:hover {
       background-color: #002244;
-      color: #ffd700;
     }
-
-    /* Conteneur boutons */
-    .btn-container {
+    /* Footer audio player */
+    footer {
+      margin-top: 40px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ddd;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
+      align-items: center;
+      height: 50px;
+      z-index: 1000;
     }
-
+    footer audio {
+      height: 30px;
+    }
     /* Responsive */
     @media (max-width: 600px) {
-      body {
-        padding: 10px;
+      img.logo {
+        max-height: 100px;
       }
-      img.banner {
-        max-height: 80px;
-        margin-bottom: 20px;
+      .btn, .btn-effectifs {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        margin: 5px 7px;
       }
-      img.photo-banda {
-        max-width: 100%;
-        margin-top: 20px;
+      footer {
+        height: 40px;
       }
-      .btn {
-        flex: 1 1 100%; /* boutons en full width */
-        margin: 8px 0;
-        font-size: 1.1rem;
-        padding: 14px;
-      }
-      .btn-container {
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 15px;
+      footer audio {
+        height: 25px;
       }
     }
   </style>
@@ -105,44 +107,31 @@
 <body>
 
 <header>
-  <img 
-    class="banner" 
-    src="https://github.com/FromageDeChevre80/Merci/blob/main/52251062.png?raw=true" 
-    alt="Logo Banda des Bords de Marne" 
-  />
+  <img class="logo" 
+       src="https://github.com/FromageDeChevre80/Merci/raw/main/52251062.png" 
+       alt="Logo Banda des Bords de Marne" />
 </header>
 
 <main>
-  <div class="btn-container">
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" 
-       class="btn red" 
-       aria-label="Modifier mon inscription">
-      ✏️ Modifier mon inscription
-    </a>
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" 
-       target="_blank" 
-       class="btn blue"
-       aria-label="Voir les effectifs">
-      👥 Voir les effectifs
-    </a>
-    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" 
-       class="btn red"
-       aria-label="Retour accueil du site">
-      🏠 Retour accueil du site
-    </a>
-  </div>
+  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/inscription" class="btn">Modifier mon inscription</a>
+  <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" target="_blank" class="btn-effectifs">
+    👥 Voir les effectifs
+  </a>
 
+  <img class="photo-banda" 
+       src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.jpg" 
+       alt="Photo Banda" />
+  
   <div>
-    <img 
-      class="photo-banda" 
-      src="https://github.com/FromageDeChevre80/Merci/blob/main/1tM31PiqJyzaPt5sa3N_DturktchmIYu9.png?raw=true" 
-      alt="Photo Banda" 
-    />
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres" class="btn">Retour accueil du site</a>
   </div>
 </main>
 
 <footer>
-  <p>&copy; Banda des Bords de Marne</p>
+  <audio controls>
+    <source src="https://github.com/FromageDeChevre80/Merci/raw/main/VID-20250719-WA0005.wav" type="audio/wav" />
+    Votre navigateur ne supporte pas la lecture audio.
+  </audio>
 </footer>
 
 </body>
