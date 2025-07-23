@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Banda des Bords de Marne</title>
 <style>
-  /* Reset & body */
   body {
     font-family: Arial, sans-serif;
     background: #fff;
@@ -22,7 +21,7 @@
 
   header {
     position: relative;
-    margin: 0 20px 0 20px; /* plus de marge sous bannière */
+    margin: 0 20px 0 20px !important; /* marge basse à 0 */
     transform: scale(0.8);
     transform-origin: top center;
   }
@@ -66,8 +65,8 @@
   }
 
   .btn-container {
-    margin-top: 4px; /* quasi collé */
-    margin-bottom: 20px;
+    margin-top: 0 !important; /* plus aucune marge au-dessus des boutons */
+    margin-bottom: 10px !important; /* marge basse plus petite */
   }
 
   .btn {
