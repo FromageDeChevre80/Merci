@@ -2,51 +2,43 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Banda des Bords de Marne</title>
+  <title>Test Banda</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #B71C1C;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
+    body { background: #fff; color: #B71C1C; text-align:center; font-family: Arial, sans-serif; }
+    .banner-wrapper { max-width: 916px; margin: 20px auto; position: relative; }
+    .banner { width: 100%; height: 130px; object-fit: contain; }
+    #audioPlayer { position: absolute; top: 5px; left: 10px; width: 180px; opacity: 0.6; }
+    #clickMessage { position: absolute; bottom: 8px; width: 100%; color: white; font-weight: bold; text-shadow: 1px 1px 4px #000; }
+    .photo-container { max-width: 80%; margin: 20px auto; position: relative; }
+    .photo-banda { width: 100%; border-radius: 12px; box-shadow: 0 0 10px rgba(183, 28, 28, 0.5); }
+    .thank-you { position: absolute; top: 10px; width: 100%; text-align: center; font-size: 28px; font-weight: bold; color: white; text-shadow: 2px 2px 6px #000; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+  <div class="banner-wrapper">
+    <audio id="audioPlayer" controls preload="none" src="https://github.com/FromageDeChevre80/Merci/blob/main/VID-20250719-WA0005.wav?raw=true"></audio>
+    <img class="banner" src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/banni%C3%A8re%20banda.png" alt="Banniere Banda" />
+    <div id="clickMessage">Cliquez ci-dessus pour lancer la musique</div>
+  </div>
+
+  <div class="photo-container">
+    <img class="photo-banda" src="https://raw.githubusercontent.com/FromageDeChevre80/Merci/refs/heads/main/PHOTO-2025-05-18-18-08-26.jpg" alt="Photo Banda" />
+    <div class="thank-you">Merci pour votre inscription</div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audioPlayer');
+    let started = false;
+    function startAudio() {
+      if (!started) {
+        audio.play().catch(() => {});
+        started = true;
+        document.removeEventListener('click', startAudio);
+      }
     }
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .banner-wrapper {
-      position: relative;
-      max-width: 916px; /* largeur légèrement réduite */
-      margin: 0 auto 10px auto;
-    }
-    .banner {
-      width: 100%;
-      height: 130px; /* un peu moins haute que avant (140px) */
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-    #audioPlayer {
-      position: absolute;
-      top: 5px;
-      left: 10px;
-      width: 180px;
-      opacity: 0.6;
-    }
-    #clickMessage {
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      text-shadow: 1px 1px 4px #000;
-    }
-    .photo-container {
-      max-width: 80%; /* un peu plus large que 70% avant */
-      margin: 20px auto 10px auto;
-    }
-    .photo-banda {
-      width: 100%;
+    document.addEventListener('click', startAudio);
+  </script>
+
+</body>
+</html>
