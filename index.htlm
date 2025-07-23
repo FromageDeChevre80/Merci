@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merci pour votre inscription - Banda des Bords de Marne</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #B71C1C;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #B71C1C;
+      padding: 20px;
+    }
+
+    header img {
+      max-height: 100px;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2em;
+      color: #B71C1C;
+    }
+
+    .buttons {
+      margin: 40px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .btn {
+      background-color: #B71C1C;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #7B1212;
+    }
+
+    .effectifs-btn {
+      background-color: #003366;
+      color: #FFD700;
+    }
+
+    .effectifs-btn:hover {
+      background-color: #002244;
+    }
+
+    footer {
+      margin-top: 50px;
+    }
+
+    footer img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://drive.google.com/uc?export=view&id=1tSUhY-FyFUAbvUfOSr1Tn8FMMfBdXdE-" alt="Logo Banda">
+  </header>
+
+  <h1>Merci pour votre inscription !</h1>
+  <p>Votre réponse a bien été enregistrée.</p>
+
+  <div class="buttons">
+    <a href="https://votre-formulaire.com" class="btn">📝 Modifier mon inscription</a>
+    <a href="https://sites.google.com/bandadesbordsdemarne.com/public/espace-membres/effectifs" class="btn effectifs-btn">👥 Voir les effectifs</a>
+    <a href="https://bandadesbordsdemarne.com" class="btn">🏠 Accueil du site</a>
+  </div>
+
+  <footer>
+    <img src="https://drive.google.com/uc?export=view&id=1tM31PiqJyzaPt5sa3N_DturktchmIYu9" alt="Photo de la Banda">
+  </footer>
+
+</body>
+</html>
